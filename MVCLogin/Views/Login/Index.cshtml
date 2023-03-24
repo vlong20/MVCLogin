@@ -1,0 +1,101 @@
+﻿@model MVCLogin.Models.Account
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ thống thư viện THPT Phú Bình</title>
+    <link rel="stylesheet" href="~/assets/fonts/fontawesome-free-6.1.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/css/normalize.min.css">
+    <link rel="stylesheet" href="~/assets/css/base.css">
+    <link rel="stylesheet" href="~/assets/css/main.css">
+    <link rel="stylesheet" href="~/assets/css/header_menu.css">
+</head>
+<body>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <div class="app">
+        <div class="header" style="height: 60px;">
+            <div class="grid">
+
+                <!-- Header with search -->
+                <div class="header-with-search" style="align-items: center; justify-content: flex-start;">
+                    <div class="header__logo">
+                        <!-- <img src="./assets/img/logo.png" alt="" class="header__logo-img"> -->
+                        <h1 class="header__logo-title" style="padding-left: 20px; padding-bottom: 20px;">THƯ VIỆN TRƯỜNG THPT PHÚ BÌNH</h1>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal layout -->
+    <div class="modal" id="login__form">
+        <div class="modal__overlay">
+        </div>
+        <div class="modal__body">
+            @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+            {
+                <!-- Login form -->
+                <div class="auth-form">
+                    <div class="auth-form__container">                        
+                        <div class="auth-form__form">
+                            <table>
+                                <tr class="auth-form__input">
+                                    <td>@Html.LabelFor(model => model.username)</td>
+                                    <td style="width: 2em;"></td>
+                                    <td>@Html.EditorFor(model => model.username)</td>
+                                </tr>
+                                <tr>
+                                    <td></td><td></td>
+                                    <td>@Html.ValidationMessageFor(model => model.username)</td>
+                                </tr>
+                                <tr class="auth-form__input">
+                                    <td>@Html.LabelFor(model => model.password)</td>
+                                    <td style="width: 2em;"></td>
+                                    <td>@Html.EditorFor(model => model.password)</td>
+                                </tr>
+                                <tr>
+                                    <td></td><td></td>
+                                    <td>@Html.ValidationMessageFor(model => model.password)</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="2">
+                                        <label class="field-validation-error">
+                                            @Html.DisplayFor(model => model.LoginErrorMessage)
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="auth-form__aside">
+                            <div class="auth-form__help">
+                                <a href="" class="auth-form__help-link auth-form__help-forgot">Quên mật khẩu</a>
+                                <span class="auth-form__help-sparate"></span>
+                                <a href="" class="auth-form__help-link">Cần trợ giúp?</a>
+                            </div>
+                        </div>
+
+                        <div class="auth-form__controls">
+                            <button class="btn auth-form__controls--btn-back btn--normal">TRỞ LẠI</button>
+                            <input type="submit" class="btn btn--primary" id="login_button" value="ĐĂNG NHẬP" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
